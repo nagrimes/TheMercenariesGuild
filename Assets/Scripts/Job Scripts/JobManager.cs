@@ -7,42 +7,45 @@ public class JobManager : MonoBehaviour {
 
 	public static JobManager instance;
 	public GameObject jobCanvas;
+	public GameObject jobTextObject;
+	public GameObject jobNameObject;
+	public GameObject jobSpriteObject;
+	public Text jobText;
+	public Text jobName;
+	public Image jobSprite;
 	private Job currentJob;
 	public static JobObjectManager currentJobObject;
+	public GameObject sendMercenariesCanvas;
 
 	void Awake(){
 		instance = this;
 	}
 
-	public void OpenJob(Job job, JobObjectManager jobObject){
+	void Start(){
+		jobText = jobTextObject.GetComponent<Text> ();
+		jobName = jobNameObject.GetComponent<Text> ();
+		jobSprite = jobSpriteObject.GetComponent<Image> ();
+	}
 
-		currentJob = job;
-		currentJobObject = jobObject;
+	public void OpenJob(Job newJob, JobObjectManager newJobObject){
+
 		jobCanvas.SetActive (true);
 
-		Transform textChild = jobCanvas.transform.Find ("Job Text");
-		Text t = textChild.GetComponent<Text> ();
-		t.text = currentJob.text;
-
-		Transform imageChild = jobCanvas.transform.Find ("Job Image");
-		Image i = imageChild.GetComponent<Image> ();
-		i.sprite = job.sprite;
-		//sets job GUI active
-
+		jobText.text = newJob.text;
+		jobSprite.sprite = newJob.sprite;
 	}
 
 	public void CloseJob(){
-		//simply closes the job UI.
 		jobCanvas.SetActive (false);
 	}
 
 	public void ActivateJob(){
-		//bring up sendMercs menu.
-		CloseJob();
+		//Open the sendMercenaries menu
+		sendMercenariesCanvas.SetActive(true);
+
 	}
 
 	public void DeleteJob(){
-		//call Destroy on the job gameObject.
 		CloseJob();
 		currentJobObject.DestroyJob ();
 	}

@@ -41,14 +41,20 @@ public class CameraManager: MonoBehaviour {
 
 			//target is the end position (Vector3) of where you want the camera to stop
 			//trans.position is the current position of the camera
-		Vector3 relPlayerPosition = target - transform.position;			
+		Vector3 relativePlayerPosition = target - transform.position;			
 
 			//this creates a rotation that face the direction the camera is moving
-		Quaternion lookAtRotation = Quaternion.LookRotation(relPlayerPosition, Vector3.up);
+		Quaternion lookAtRotation = Quaternion.LookRotation(relativePlayerPosition, Vector3.up);
 
 			//this lerps the camera rotation to lookAtRotation
 		transform.rotation = Quaternion.Lerp(transform.rotation, lookAtRotation, Time.deltaTime * lerpRotationSpeed);
 
+	}
+
+	void SetOriginalPerspective(){
+		target = cameraOrigin.transform.position;
+		targetCameraOffset = cameraOriginOffset;
+		cameraMoveEnabled = true;
 	}
 
 	//THE FOLLOWING FUNCTIONS ARE RESERVED FOR OUTSIDE SCRIPTS ACTING UPON THIS SCRIPT
@@ -57,12 +63,6 @@ public class CameraManager: MonoBehaviour {
 	public void SetNewPerspective(Vector3 target, Vector3 targetCameraOffset){
 		this.target = target;
 		this.targetCameraOffset = targetCameraOffset;
-		cameraMoveEnabled = true;
-	}
-
-	public void SetOriginalPerspective(){
-		target = cameraOrigin.transform.position;
-		targetCameraOffset = cameraOriginOffset;
 		cameraMoveEnabled = true;
 	}
 }
