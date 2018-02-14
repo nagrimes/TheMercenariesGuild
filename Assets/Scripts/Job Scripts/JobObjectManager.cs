@@ -18,7 +18,6 @@ public class JobObjectManager : MonoBehaviour {
 
 		}
 		if (isSelectable) {
-		Debug.Log("Clicked!");
 			currentJobObject = this;
 			//enable job menu on camera 1 canvas, change text, change image.
 			JobManager.instance.OpenJob (currentJob, currentJobObject);
@@ -31,6 +30,5 @@ public class JobObjectManager : MonoBehaviour {
 
 	public void SetSelectability(bool newValue){
 		isSelectable = newValue;
-		Debug.Log ("My selectability is " + newValue);
 	}
 }

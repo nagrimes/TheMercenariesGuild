@@ -31,6 +31,7 @@ public class JobManager : MonoBehaviour {
 
 		jobCanvas.SetActive (true);
 
+		jobName.text = newJob.name;
 		jobText.text = newJob.text;
 		jobSprite.sprite = newJob.sprite;
 	}

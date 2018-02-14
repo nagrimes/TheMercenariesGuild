@@ -5,51 +5,54 @@ using UnityEngine.UI;
 
 public class RecruitManager : MonoBehaviour {
 	public static RecruitManager instance;
-	public GameObject baseRecruitCanvas;
-	public GameObject recruitCanvas;
+	public GameObject recruitMenu;
+	[SerializeField] private GameObject recruitNameObject;
+	[SerializeField] private GameObject recruitImageObject;
+	[SerializeField] private GameObject healthValueObject;
+	[SerializeField] private GameObject attackValueObject;
+	[SerializeField] private GameObject defenseValueObject;
+	[SerializeField] private GameObject costValueObject;
+	private Text recruitName;
+	private Image recruitImage;
+	private Text recruitHealth;
+	private Text recruitAttack;
+	private Text recruitDefense;
+	private Text recruitCost;
 	private Recruit currentRecruit;
 	public static RecruitObjectManager currentRecruitObject;
 
+	private List<Recruit> recruits = new List<Recruit> ();
+
 	void Awake(){
 		instance = this;
+	}
+
+	void Start(){
+		recruitName = recruitNameObject.GetComponent<Text> ();
+		recruitImage = recruitImageObject.GetComponent<Image> ();
+		recruitHealth = healthValueObject.GetComponent<Text> ();
+		recruitAttack = attackValueObject.GetComponent<Text> ();
+		recruitDefense = defenseValueObject.GetComponent<Text> ();
+		recruitCost = costValueObject.GetComponent<Text> ();
 	}
 
 	public void OpenRecruitMenu(Recruit recruit, RecruitObjectManager recruitObject){
 		//opens recruit canvas (menu) object.
 		//displays current recruit objects on the recruit menu.
 
-		currentRecruit = recruit;
-		currentRecruitObject = recruitObject;
-		baseRecruitCanvas.SetActive (true);
-
-		Transform textChild = recruitCanvas.transform.Find ("Recruit Name");
-		Text n = textChild.GetComponent<Text> ();
-		n.text = currentRecruit.recruitName;
-
-		Transform imageChild = recruitCanvas.transform.Find ("Recruit Image");
-		Image i = imageChild.GetComponent<Image> ();
-		i.sprite = recruit.sprite;
-
-		textChild = recruitCanvas.transform.Find ("Health Value");
-		Text h = textChild.GetComponent<Text> ();
-		h.text = "Health: " + currentRecruit.health.ToString ();
-
-		textChild = recruitCanvas.transform.Find ("Attack Value");
-		Text a = textChild.GetComponent<Text> ();
-		a.text = "Attack: " + currentRecruit.attack.ToString ();
-
-		textChild = recruitCanvas.transform.Find ("Defense Value");
-		Text d = textChild.GetComponent<Text> ();
-		d.text = "Defense: " + currentRecruit.defense.ToString();
-
-		textChild = recruitCanvas.transform.Find ("Cost Value");
-		Text c = textChild.GetComponent<Text> ();
-		c.text = "Cost: " + currentRecruit.cost.ToString() + "G";
+		recruitMenu.SetActive (true);
+		
+		recruitName.text = recruit.recruitName;
+		recruitImage.sprite = recruit.sprite;
+		recruitHealth.text = "Health: " + recruit.health.ToString();
+		recruitAttack.text = "Attack: " + recruit.attack.ToString ();
+		recruitDefense.text = "Defense: " + recruit.defense.ToString ();
+		recruitCost.text = "Cost: " + recruit.cost.ToString ();
 	}
 
 	public void CloseRecruitMenu(){
 		//closes the recruitment menu.
-		baseRecruitCanvas.SetActive(false);
+		recruitMenu.SetActive(false);
 	}
 
 	public void AddRecruit(){
@@ -61,5 +64,13 @@ public class RecruitManager : MonoBehaviour {
 		//removes the recruit object from the menu.
 		CloseRecruitMenu();
 
+	}
+
+	public List<Recruit> GetRecruits(){
+		return recruits;
+	}
+
+	public void AddRecruit(Recruit recruit){
+		recruits.Add (recruit);
 	}
 }
