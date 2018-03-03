@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class JobManager : MonoBehaviour {
 
 	public static JobManager instance;
+	public static JobObjectManager currentJobObject;
 	public GameObject jobCanvas;
 	public GameObject jobTextObject;
 	public GameObject jobNameObject;
@@ -14,8 +15,7 @@ public class JobManager : MonoBehaviour {
 	public Text jobName;
 	public Image jobSprite;
 	private Job currentJob;
-	public static JobObjectManager currentJobObject;
-	public GameObject sendMercenariesCanvas;
+
 
 	void Awake(){
 		instance = this;
@@ -31,6 +31,8 @@ public class JobManager : MonoBehaviour {
 
 		jobCanvas.SetActive (true);
 
+		currentJobObject = newJobObject;
+		currentJob = newJob;
 		jobName.text = newJob.name;
 		jobText.text = newJob.text;
 		jobSprite.sprite = newJob.sprite;
@@ -40,14 +42,12 @@ public class JobManager : MonoBehaviour {
 		jobCanvas.SetActive (false);
 	}
 
-	public void ActivateJob(){
-		//Open the sendMercenaries menu
-		sendMercenariesCanvas.SetActive(true);
-
-	}
-
 	public void DeleteJob(){
 		CloseJob();
 		currentJobObject.DestroyJob ();
+	}
+
+	public Job GetCurrentJob(){
+		return currentJob;
 	}
 }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class RecruitManager : MonoBehaviour {
 	public static RecruitManager instance;
 	public GameObject recruitMenu;
-	[SerializeField] private GameObject recruitNameObject;
-	[SerializeField] private GameObject recruitImageObject;
-	[SerializeField] private GameObject healthValueObject;
-	[SerializeField] private GameObject attackValueObject;
-	[SerializeField] private GameObject defenseValueObject;
-	[SerializeField] private GameObject costValueObject;
+	[SerializeField] private GameObject recruitNameObject = null;
+	[SerializeField] private GameObject recruitImageObject = null;
+	[SerializeField] private GameObject healthValueObject = null;
+	[SerializeField] private GameObject attackValueObject = null;
+	[SerializeField] private GameObject defenseValueObject = null;
+	[SerializeField] private GameObject costValueObject = null;
 	private Text recruitName;
 	private Image recruitImage;
 	private Text recruitHealth;
@@ -36,15 +36,16 @@ public class RecruitManager : MonoBehaviour {
 		recruitCost = costValueObject.GetComponent<Text> ();
 	}
 
-	public void OpenRecruitMenu(Recruit recruit, RecruitObjectManager recruitObject){
-		//opens recruit canvas (menu) object.
-		//displays current recruit objects on the recruit menu.
-
+	public void OpenRecruitMenuWithText(Recruit recruit, RecruitObjectManager recruitObject){
 		recruitMenu.SetActive (true);
-		
+		currentRecruit = recruit;
+		PopulateMenu (recruit);
+	}
+
+	void PopulateMenu (Recruit recruit){
 		recruitName.text = recruit.recruitName;
 		recruitImage.sprite = recruit.sprite;
-		recruitHealth.text = "Health: " + recruit.health.ToString();
+		recruitHealth.text = "Health: " + recruit.health.ToString ();
 		recruitAttack.text = "Attack: " + recruit.attack.ToString ();
 		recruitDefense.text = "Defense: " + recruit.defense.ToString ();
 		recruitCost.text = "Cost: " + recruit.cost.ToString ();
@@ -56,8 +57,8 @@ public class RecruitManager : MonoBehaviour {
 	}
 
 	public void AddRecruit(){
-		//adds the recruit to the user's recruited list.
-		CloseRecruitMenu();
+		recruits.Add (currentRecruit);
+		CloseRecruitMenu ();
 	}
 
 	public void DeleteRecruit(){
@@ -68,9 +69,5 @@ public class RecruitManager : MonoBehaviour {
 
 	public List<Recruit> GetRecruits(){
 		return recruits;
-	}
-
-	public void AddRecruit(Recruit recruit){
-		recruits.Add (recruit);
 	}
 }

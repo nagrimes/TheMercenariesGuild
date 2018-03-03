@@ -9,7 +9,7 @@ public class RecruitObjectManager : MonoBehaviour {
 
 	void OnMouseDown(){
 		currentRecruitObject = this;
-		RecruitManager.instance.OpenRecruitMenu (currentRecruit, currentRecruitObject);
+		RecruitManager.instance.OpenRecruitMenuWithText (currentRecruit, currentRecruitObject);
 	}
 
 	public void DestroyRecruit(){
