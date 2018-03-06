@@ -10,5 +10,5 @@ public class Job : ScriptableObject{
 	public int jobIDUnlocks;
 	public int attack;
 	public int defense;
-	public int time;
+	public float time;
 }

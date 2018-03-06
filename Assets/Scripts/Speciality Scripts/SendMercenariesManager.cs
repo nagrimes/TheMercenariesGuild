@@ -11,6 +11,7 @@ public class SendMercenariesManager : MonoBehaviour {
 	[SerializeField] private JobManager JobManager;
 
 	[SerializeField] private GameObject sendMercenariesCanvas;
+	[SerializeField] private SendMercenariesConfirmation sendMercsConfirmationMenu;
 
 	[SerializeField] private Text unitOneTextObject;
 	[SerializeField] private Text unitTwoTextObject;
@@ -41,12 +42,7 @@ public class SendMercenariesManager : MonoBehaviour {
 		sendMercenariesCanvas.SetActive (false);
 	}
 
-	public void SendMercenaries(){
-		
-		//open prompt to ask player if they want to send this party
-		//if prompt returns true, close menu and start quest
-		//if prompt returns false, keep menu open
-
-
+	public void Accept(){
+		sendMercsConfirmationMenu.OpenConfirmationMenu ();
 	}
 }

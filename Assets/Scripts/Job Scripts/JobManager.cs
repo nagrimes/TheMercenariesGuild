@@ -11,9 +11,9 @@ public class JobManager : MonoBehaviour {
 	public GameObject jobTextObject;
 	public GameObject jobNameObject;
 	public GameObject jobSpriteObject;
-	public Text jobText;
-	public Text jobName;
-	public Image jobSprite;
+	private Text jobText;
+	private Text jobName;
+	private Image jobSprite;
 	private Job currentJob;
 
 
