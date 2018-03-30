@@ -15,4 +15,8 @@ public class RecruitObjectManager : MonoBehaviour {
 	public void DestroyRecruit(){
 		Destroy (gameObject);
 	}
+
+	public void LoadRecruit(Recruit recruit){
+		currentRecruit = recruit;
+	}
 }

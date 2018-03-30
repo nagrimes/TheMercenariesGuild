@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SendMercenariesConfirmation : MonoBehaviour {
-	[SerializeField] private GameObject confirmationCanvas;
-	[SerializeField] private SendMercenariesManager sendMercenariesManager;
-	[SerializeField] private JobManager jobManager;
-	[SerializeField] private ActiveJobManager activeJobManager;
+	[SerializeField] private GameObject confirmationCanvas = null;
+	[SerializeField] private SendMercenariesManager sendMercenariesManager = null;
+	[SerializeField] private JobManager jobManager = null;
+	[SerializeField] private ActiveJobManager activeJobManager = null;
 
 	public void AcceptConfirmation(){
 		Debug.Log ("Confirmation: Request start job");

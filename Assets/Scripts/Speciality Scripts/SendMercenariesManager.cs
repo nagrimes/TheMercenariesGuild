@@ -7,20 +7,20 @@ using System.Linq;
 public class SendMercenariesManager : MonoBehaviour {
 
 	private static SendMercenariesManager instance;
-	[SerializeField] private RecruitManager RecruitManager;
-	[SerializeField] private JobManager JobManager;
+	[SerializeField] private RecruitManager RecruitManager = null;
+	[SerializeField] private JobManager JobManager = null;
 
-	[SerializeField] private GameObject sendMercenariesCanvas;
-	[SerializeField] private SendMercenariesConfirmation sendMercsConfirmationMenu;
+	[SerializeField] private GameObject sendMercenariesCanvas = null;
+	[SerializeField] private SendMercenariesConfirmation sendMercsConfirmationMenu = null;
 
-	[SerializeField] private Text unitOneTextObject;
-	[SerializeField] private Text unitTwoTextObject;
-	[SerializeField] private Text unitThreeTextObject;
-	[SerializeField] private Text unitFourTextObject;
-	[SerializeField] private Text jobAttackValueObject;
-	[SerializeField] private Text jobDefenseValueObject;
-	[SerializeField] private Text partyAttackValueObject;
-	[SerializeField] private Text partyDefenseValueObject;
+	[SerializeField] private Text unitOneTextObject = null;
+	[SerializeField] private Text unitTwoTextObject = null;
+	[SerializeField] private Text unitThreeTextObject = null;
+	[SerializeField] private Text unitFourTextObject = null;
+	[SerializeField] private Text jobAttackValueObject = null;
+	[SerializeField] private Text jobDefenseValueObject = null;
+	[SerializeField] private Text partyAttackValueObject = null;
+	[SerializeField] private Text partyDefenseValueObject = null;
 
 
 	void Start () {

@@ -11,4 +11,5 @@ public class Job : ScriptableObject{
 	public int attack;
 	public int defense;
 	public float time;
+	public int goldReward;
 }
