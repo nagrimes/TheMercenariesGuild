@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JobObjectManager : MonoBehaviour {
+public class JobBoardManager : MonoBehaviour {
 
 	//OnMouseOver, highlight with a glow element.
 	//OnMouseDown, bring up job in UI form.
 
 	private bool isSelectable = false;
 	public Job currentJob;
-	static JobObjectManager currentJobObject;
+	static JobBoardManager currentJobObject;
 	public JobBoard jobBoard;
 
 	void OnMouseDown(){

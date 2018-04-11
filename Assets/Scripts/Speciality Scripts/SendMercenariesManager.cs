@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+#pragma warning disable 649
 
 public class SendMercenariesManager : MonoBehaviour {
 
@@ -13,14 +14,14 @@ public class SendMercenariesManager : MonoBehaviour {
 	[SerializeField] private GameObject sendMercenariesCanvas = null;
 	[SerializeField] private SendMercenariesConfirmation sendMercsConfirmationMenu = null;
 
-	[SerializeField] private Text unitOneTextObject = null;
-	[SerializeField] private Text unitTwoTextObject = null;
-	[SerializeField] private Text unitThreeTextObject = null;
-	[SerializeField] private Text unitFourTextObject = null;
-	[SerializeField] private Text jobAttackValueObject = null;
-	[SerializeField] private Text jobDefenseValueObject = null;
-	[SerializeField] private Text partyAttackValueObject = null;
-	[SerializeField] private Text partyDefenseValueObject = null;
+	[SerializeField] private Text unitOneTextObject ;
+	[SerializeField] private Text unitTwoTextObject;
+	[SerializeField] private Text unitThreeTextObject;
+	[SerializeField] private Text unitFourTextObject;
+	[SerializeField] private Text jobAttackValueObject;
+	[SerializeField] private Text jobDefenseValueObject;
+	[SerializeField] private Text partyAttackValueObject;
+	[SerializeField] private Text partyDefenseValueObject;
 
 
 	void Start () {

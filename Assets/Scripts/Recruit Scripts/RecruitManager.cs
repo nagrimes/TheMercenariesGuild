@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable 649
 
 public class RecruitManager : MonoBehaviour {
 	public static RecruitManager instance;
 	public GameObject recruitMenu;
+	[SerializeField] private RecruitDoorManager currentRecruitObject;
+	[SerializeField] private GameManager gameManager;
+
 	[SerializeField] private GameObject recruitNameObject = null;
 	[SerializeField] private GameObject recruitImageObject = null;
 	[SerializeField] private GameObject healthValueObject = null;
@@ -19,8 +23,8 @@ public class RecruitManager : MonoBehaviour {
 	private Text recruitDefense;
 	private Text recruitCost;
 	private Recruit currentRecruit;
-	public static RecruitObjectManager currentRecruitObject;
 
+	[SerializeField] private AllRecruits allRecruits;
 	private List<Recruit> recruits = new List<Recruit> ();
 
 	void Awake(){
@@ -36,7 +40,7 @@ public class RecruitManager : MonoBehaviour {
 		recruitCost = costValueObject.GetComponent<Text> ();
 	}
 
-	public void OpenRecruitMenuWithText(Recruit recruit, RecruitObjectManager recruitObject){
+	public void OpenRecruitMenuWithText(Recruit recruit, RecruitDoorManager recruitObject){
 		recruitMenu.SetActive (true);
 		currentRecruit = recruit;
 		PopulateMenu (recruit);
@@ -58,16 +62,23 @@ public class RecruitManager : MonoBehaviour {
 
 	public void AddRecruit(){
 		recruits.Add (currentRecruit);
+		gameManager.DecreaseGold (currentRecruit.cost);
+		currentRecruitObject.UnloadRecruit ();
 		CloseRecruitMenu ();
+
 	}
 
 	public void DeleteRecruit(){
 		//removes the recruit object from the menu.
+		currentRecruitObject.UnloadRecruit ();
 		CloseRecruitMenu();
-
 	}
 
 	public List<Recruit> GetRecruits(){
 		return recruits;
+	}
+
+	public Recruit[] GetAllRecruits(){
+		return allRecruits.recruits;
 	}
 }

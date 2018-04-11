@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#pragma warning disable 649
 
 public class SendMercenariesConfirmation : MonoBehaviour {
-	[SerializeField] private GameObject confirmationCanvas = null;
-	[SerializeField] private SendMercenariesManager sendMercenariesManager = null;
-	[SerializeField] private JobManager jobManager = null;
-	[SerializeField] private ActiveJobManager activeJobManager = null;
+	[SerializeField] private GameObject confirmationCanvas;
+	[SerializeField] private SendMercenariesManager sendMercenariesManager;
+	[SerializeField] private JobManager jobManager;
+	[SerializeField] private ActiveJobManager activeJobManager;
 
 	public void AcceptConfirmation(){
 		Debug.Log ("Confirmation: Request start job");

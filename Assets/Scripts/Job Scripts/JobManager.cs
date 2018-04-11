@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class JobManager : MonoBehaviour {
 
 	public static JobManager instance;
-	public static JobObjectManager currentJobObject;
+	public static JobBoardManager currentJobObject;
 	public GameObject jobCanvas;
 	public GameObject jobTextObject;
 	public GameObject jobNameObject;
@@ -27,7 +27,7 @@ public class JobManager : MonoBehaviour {
 		jobSprite = jobSpriteObject.GetComponent<Image> ();
 	}
 
-	public void OpenJob(Job newJob, JobObjectManager newJobObject){
+	public void OpenJob(Job newJob, JobBoardManager newJobObject){
 
 		jobCanvas.SetActive (true);
 

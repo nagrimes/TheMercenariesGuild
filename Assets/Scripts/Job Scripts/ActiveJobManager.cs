@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable 649
 
 public class ActiveJobManager : MonoBehaviour {
-	[SerializeField] private GameObject jobCompletionBarGameObject = null;
-	[SerializeField] private GameObject jobCompletionMenu = null;
-	[SerializeField] private Text jobCompletionResultText = null;
-	[SerializeField] private Text jobCompletionPayoutText = null;
-	[SerializeField] private Slider jobCompletionBar = null;
-	[SerializeField] private GameManager gameManager = null;
+	[SerializeField] private GameObject jobCompletionBarGameObject;
+	[SerializeField] private GameObject jobCompletionMenu;
+	[SerializeField] private Text jobCompletionResultText;
+	[SerializeField] private Text jobCompletionPayoutText;
+	[SerializeField] private Slider jobCompletionBar;
+	[SerializeField] private GameManager gameManager;
 	[SerializeField] private float completionRateMultiplier = 1f;
 	public bool winLose = true; //Temporary variable
 	private bool jobInProgress = false;

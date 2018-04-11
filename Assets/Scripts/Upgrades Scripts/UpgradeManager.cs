@@ -6,46 +6,47 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour{
 	public static UpgradeManager instance;
 
-	public Text attackValue;
-	public Text defenseValue;
+	public Text attackAndDefenseValue;
 	public Text goldValue;
-	public Text attackGoldCost;
-	public Text defenseGoldCost;
-	public Text goldGoldCost;
-	public Button attackButton;
-	public Button defenseButton;
+	public Text timeValue;
+	public Text attackAndDefenseCost;
+	public Text goldCost;
+	public Text timeCost;
+	public Button attackAndDefenseButton;
 	public Button goldButton;
+	public Button timeButton;
 	public int startingUpgradeGoldCost;
+	public int startingUpgradeLevel = 1;
 
-	private int attackNum;
-	private int defenseNum;
+	private int attackAndDefenseNum;
 	private int goldNum;
+	private int timeNum;
 
 	void Awake(){
 		instance = this;
-		UpdateCost ("attack", 1);
-		UpdateCost ("defense", 1);
+		UpdateCost ("attackAndDefense", 1);
 		UpdateCost ("gold", 1);
+		UpdateCost ("time", 1);
 	}
 
 	//Function List:
 	//increment level(whichValue)
 	public void IncrementLevel(string whichValue){
-		if (whichValue == "attack") {
-			attackNum = int.Parse (attackValue.text);
-			attackNum++;
-			attackValue.text = attackNum.ToString();
-			UpdateCost (whichValue, attackNum + 1);
-		} else if (whichValue == "defense") {
-			defenseNum = int.Parse (defenseValue.text);
-			defenseNum++;
-			defenseValue.text = defenseNum.ToString();
-			UpdateCost (whichValue, defenseNum + 1);
+		if (whichValue == "attackAndDefense") {
+			attackAndDefenseNum = int.Parse (attackAndDefenseValue.text);
+			attackAndDefenseNum++;
+			attackAndDefenseValue.text = attackAndDefenseNum.ToString();
+			UpdateCost (whichValue, attackAndDefenseNum + 1);
 		} else if (whichValue == "gold") {
 			goldNum = int.Parse (goldValue.text);
 			goldNum++;
-			goldValue.text = goldNum.ToString ();
+			goldValue.text = goldNum.ToString();
 			UpdateCost (whichValue, goldNum + 1);
+		} else if (whichValue == "time") {
+			timeNum = int.Parse (timeValue.text);
+			timeNum++;
+			timeValue.text = timeNum.ToString ();
+			UpdateCost (whichValue, timeNum + 1);
 		}
 	}
 
@@ -53,12 +54,12 @@ public class UpgradeManager : MonoBehaviour{
 	public void UpdateCost(string whichValue, int currentLevel){
 		int newCost = startingUpgradeGoldCost * (int)Mathf.Pow (currentLevel, 2);
 
-		if (whichValue == "attack")
-			attackGoldCost.text = "Cost: " + newCost;
-		else if (whichValue == "defense")
-			defenseGoldCost.text = "Cost: " + newCost;
+		if (whichValue == "attackAndDefense")
+			attackAndDefenseCost.text = "Cost: " + newCost;
 		else if (whichValue == "gold")
-			goldGoldCost.text = "Cost: " + newCost;
+			goldCost.text = "Cost: " + newCost;
+		else if (whichValue == "time")
+			timeCost.text = "Cost: " + newCost;
 	}
 
 	//update percentage increase
