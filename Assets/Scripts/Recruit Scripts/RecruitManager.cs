@@ -24,11 +24,13 @@ public class RecruitManager : MonoBehaviour {
 	private Text recruitCost;
 	private Recruit currentRecruit;
 
+	[SerializeField] private Recruit startingRecruitProvidedAtStartOfGame;
 	[SerializeField] private AllRecruits allRecruits;
-	private List<Recruit> recruits = new List<Recruit> ();
+	public List<Recruit> recruits = new List<Recruit> ();
 
 	void Awake(){
 		instance = this;
+		AddRecruit (startingRecruitProvidedAtStartOfGame);
 	}
 
 	void Start(){
@@ -61,11 +63,18 @@ public class RecruitManager : MonoBehaviour {
 	}
 
 	public void AddRecruit(){
-		recruits.Add (currentRecruit);
-		gameManager.DecreaseGold (currentRecruit.cost);
-		currentRecruitObject.UnloadRecruit ();
-		CloseRecruitMenu ();
+		if(gameManager.CheckDoesPlayerHaveEnoughGold(currentRecruit.cost)){
+			recruits.Add (currentRecruit);
+			gameManager.DecreaseGold (currentRecruit.cost);
+			currentRecruitObject.UnloadRecruit ();
+			CloseRecruitMenu ();
+		}
+	}
 
+	//Only for use by the default recruit loader at the beginning of the game.
+	void AddRecruit(Recruit recruit){
+		recruits.Add (recruit);
+		//Debug.Log ("Default recruit loaded.");
 	}
 
 	public void DeleteRecruit(){

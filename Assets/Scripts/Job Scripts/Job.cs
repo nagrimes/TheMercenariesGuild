@@ -7,7 +7,6 @@ public class Job : ScriptableObject{
 	public string jobName;
 	public Sprite sprite;
 	public string text;
-	public int jobIDUnlocks;
 	public int attack;
 	public int defense;
 	public float time;

@@ -25,6 +25,13 @@ public class MakeScriptableObject {
 		AssetDatabase.SaveAssets ();
 	}
 
+	[MenuItem("CustomAssets/AllJobs")]
+	public static void CreateAllJobsAsset(){
+		AllJobs database = ScriptableObject.CreateInstance<AllJobs> ();
+		AssetDatabase.CreateAsset (database, "Assets/Jobs/AllJobs #.asset");
+		AssetDatabase.SaveAssets ();
+	}
+
 	/*
 	[MenuItem("CustomAssets/Upgrade")]
 	public static void CreateUpgradeAsset(){

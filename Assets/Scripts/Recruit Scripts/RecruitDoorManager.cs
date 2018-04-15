@@ -35,11 +35,10 @@ public class RecruitDoorManager : MonoBehaviour {
 		float rate = 100 / 60	;
 		while (i < timeUntilNewRecruit) {
 			i += Time.deltaTime * rate;
-			Debug.Log (i);
 			yield return 0;
 		}
 		//Load a new random recruit into the ROM
-		Debug.Log("Load recruit");
+		//Debug.Log("Load recruit");
 		Recruit[] recruits = recruitManager.GetAllRecruits();
 		int r = Random.Range (0, Mathf.Clamp(recruits.Length, 0, 10));
 		LoadRecruit (recruits [r]);

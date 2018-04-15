@@ -8,22 +8,33 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 	[SerializeField] private Text currencyText;
-	private int gold;
+	[SerializeField] private int startingGold = 6000;
+	private int playerGold;
 
 	void Awake(){
 		instance = this;
-		gold = 6000;
+		playerGold = startingGold;
 	}
 
 	void Update(){
-		currencyText.text = gold.ToString ();
+		currencyText.text = playerGold.ToString ();
 	}
 
 	public void IncreaseGold(int amount){
-		gold += amount;
+		playerGold += amount;
 	}
 
 	public void DecreaseGold(int amount){
-		gold -= amount;
+		playerGold -= amount;
+	}
+
+	public bool CheckDoesPlayerHaveEnoughGold(int amountRequested){
+		if (playerGold < amountRequested)
+			PrintNotEnoughGold ();
+		return (playerGold >= amountRequested);
+	}
+
+	void PrintNotEnoughGold(){
+		Debug.Log ("Insufficient gold.");
 	}
 }
