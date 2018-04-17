@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 	[SerializeField] private Text currencyText;
 	[SerializeField] private int startingGold = 6000;
+	[SerializeField] private RecruitManager recruitManager;
 	private int playerGold;
 
 	void Awake(){
@@ -36,5 +37,9 @@ public class GameManager : MonoBehaviour {
 
 	void PrintNotEnoughGold(){
 		Debug.Log ("Insufficient gold.");
+	}
+
+	public int GetTotalRecruits(){
+		return recruitManager.GetRecruits ().Count;
 	}
 }

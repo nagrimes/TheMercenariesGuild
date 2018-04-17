@@ -11,6 +11,7 @@ public class JobSpawner : MonoBehaviour {
 	[SerializeField] private AllJobs allJobs;
 	[SerializeField] private JobBoard jobBoard;
 	[SerializeField] private JobManager jobManager;
+	[SerializeField] private GameManager gameManager;
 	int numberOfJobs;
 	int playersAttackAndDefenseLevel;
 
@@ -50,7 +51,7 @@ public class JobSpawner : MonoBehaviour {
 		if (jobBoard.GetSelectability() == true)
 			jobManager.SetAllJobSelectability (true);
 		numberOfJobs++;
-		int playerRank = upgradeManager.GetAttackAndDefenseRank();
+		int playerRank = gameManager.GetTotalRecruits (); 
 		ChooseRandomJobFromSet (playerRank);
 	}
 
@@ -58,13 +59,16 @@ public class JobSpawner : MonoBehaviour {
 		Debug.Log ("Choosing from job section.");
 		switch (playerRank) {
 		case 1:
-			LoadJob (Random.Range (0, 3));
+			LoadJob (Random.Range (0, 4));
 			break;
 		case 2:
-			LoadJob (Random.Range (3, 6));
+			LoadJob (Random.Range (4, 8));
 			break;
 		case 3:
-			LoadJob (Random.Range (6, 9));
+			LoadJob (Random.Range (8, 12));
+			break;
+		case 4:
+			LoadJob (Random.Range (12, 16));
 			break;
 		}
 	}

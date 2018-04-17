@@ -18,8 +18,7 @@ public class SendMercenariesManager : MonoBehaviour {
 	[SerializeField] private Text unitTwoTextObject;
 	[SerializeField] private Text unitThreeTextObject;
 	[SerializeField] private Text unitFourTextObject;
-	[SerializeField] private Text jobAttackValueObject;
-	[SerializeField] private Text jobDefenseValueObject;
+	[SerializeField] private Text jobDifficultyValueObject;
 	[SerializeField] private Text partyAttackValueObject;
 	[SerializeField] private Text partyDefenseValueObject;
 

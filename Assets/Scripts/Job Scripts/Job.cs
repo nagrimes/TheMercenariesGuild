@@ -7,8 +7,8 @@ public class Job : ScriptableObject{
 	public string jobName;
 	public Sprite sprite;
 	public string text;
-	public int attack;
-	public int defense;
+	public int displayedDifficulty;
+	public int hiddenDifficultyValue;
 	public float time;
 	public int goldReward;
 }
