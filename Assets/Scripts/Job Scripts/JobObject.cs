@@ -11,6 +11,7 @@ public class JobObject : MonoBehaviour {
 	public Job currentJob;
 	static JobObject currentJobObject;
 	public JobBoard jobBoard;
+	public int boardQuadrant{ get; set; }
 
 	void OnMouseDown(){
 		if (!isSelectable) {
@@ -19,7 +20,6 @@ public class JobObject : MonoBehaviour {
 		}
 		if (isSelectable) {
 			currentJobObject = this;
-			//enable job menu on camera 1 canvas, change text, change image.
 			JobManager.instance.OpenJob (currentJob, currentJobObject);
 		}
 	}
@@ -31,5 +31,4 @@ public class JobObject : MonoBehaviour {
 	public void SetSelectability(bool newValue){
 		isSelectable = newValue;
 	}
-
 }

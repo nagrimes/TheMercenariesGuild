@@ -7,17 +7,27 @@ public class JobManager : MonoBehaviour {
 
 	public static JobManager instance;
 	public static JobObject currentJobObject;
-	public JobSpawner jobSpawner;
-	public GameObject jobCanvas;
-	public GameObject jobTextObject;
-	public GameObject jobNameObject;
-	public GameObject jobSpriteObject;
+	[SerializeField] private JobSpawner jobSpawner;
+	[SerializeField] private GameObject jobCanvas;
+	[SerializeField] private GameObject jobSpriteObject;
+	[SerializeField] private GameObject jobTextObject;
+	[SerializeField] private GameObject jobNameObject;
+	[SerializeField] private GameObject jobDifficultyObject;
+	[SerializeField] private GameObject jobRewardObject;
+
+	private Image jobSprite;
 	private Text jobText;
 	private Text jobName;
-	private Image jobSprite;
+	private Text jobDifficulty;
+	private Text jobReward;
+
 	private Job currentJob;
 
-	public List<GameObject> currentJobList = new List<GameObject>();
+
+	[SerializeField] private int smallerFontSize = 30;
+	[SerializeField] private int originalFontSize = 34;
+
+	public List<GameObject> jobObjectList = new List<GameObject>();
 
 
 	void Awake(){
@@ -28,6 +38,8 @@ public class JobManager : MonoBehaviour {
 		jobText = jobTextObject.GetComponent<Text> ();
 		jobName = jobNameObject.GetComponent<Text> ();
 		jobSprite = jobSpriteObject.GetComponent<Image> ();
+		jobDifficulty = jobDifficultyObject.GetComponent<Text> ();
+		jobReward = jobRewardObject.GetComponent<Text> ();
 	}
 
 	public void OpenJob(Job newJob, JobObject newJobObject){
@@ -36,13 +48,18 @@ public class JobManager : MonoBehaviour {
 
 		currentJobObject = newJobObject;
 		currentJob = newJob;
-		jobName.text = newJob.name;
+		jobName.text = newJob.jobName;
+		if (newJob.text.Length > 110)
+			SetFontSize (smallerFontSize);
 		jobText.text = newJob.text;
 		jobSprite.sprite = newJob.sprite;
+		jobDifficulty.text = "Difficulty: " + newJob.displayedDifficulty.ToString();
+		jobReward.text = "Reward: " + newJob.goldReward.ToString();
 	}
 
 	public void CloseJob(){
 		jobCanvas.SetActive (false);
+		SetFontSize (originalFontSize);
 	}
 
 	public void DeleteJob(){
@@ -56,19 +73,27 @@ public class JobManager : MonoBehaviour {
 		return currentJob;
 	}
 
-	public void AddJob(GameObject job){
-		currentJobList.Add(job);
+	public void AddJobToList(GameObject job){
+		jobObjectList.Add(job);
 	}
 
 	public void RemoveJob(GameObject job){
-		currentJobList.Remove (job);
+		jobObjectList.Remove (job);
+	}
+
+	public List<GameObject> GetJobObjectList(){
+		return jobObjectList;
 	}
 
 	public void SetAllJobSelectability(bool newValue){
-		foreach(GameObject jobObject in currentJobList){
+		foreach(GameObject jobObject in jobObjectList){
 			JobObject thisJobObject = jobObject.GetComponent<JobObject> ();
 			thisJobObject.SetSelectability (newValue);
 			//Debug.Log ("Set accessible.");
 		}
+	}
+
+	public void SetFontSize(int size){
+		jobText.fontSize = size;
 	}
 }

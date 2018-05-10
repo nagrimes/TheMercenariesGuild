@@ -36,6 +36,8 @@ public class SendMercenariesManager : MonoBehaviour {
 		Debug.Log (recruitsList.ElementAt(0).recruitName);
 
 		unitOneTextObject.text = recruitsList.ElementAt (0).recruitName.ToString ();
+
+		jobDifficultyValueObject.text = "Difficulty: " + currentJob.displayedDifficulty;
 	}
 
 	public void CloseMenu(){
@@ -44,5 +46,9 @@ public class SendMercenariesManager : MonoBehaviour {
 
 	public void Accept(){
 		sendMercsConfirmationMenu.OpenConfirmationMenu ();
+	}
+
+	public void UpdatePartyValues(){
+		
 	}
 }
