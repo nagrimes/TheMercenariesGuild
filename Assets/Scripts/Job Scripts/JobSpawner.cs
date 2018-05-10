@@ -66,13 +66,13 @@ public class JobSpawner : MonoBehaviour {
 			LoadJob (Random.Range (0, 4));
 			break;
 		case 2:
-			LoadJob (Random.Range (4, 8));
+			LoadJob (Random.Range (2, 6));
 			break;
 		case 3:
-			LoadJob (Random.Range (8, 12));
+			LoadJob (Random.Range (4, 8));
 			break;
 		case 4:
-			LoadJob (Random.Range (12, 16));
+			LoadJob (Random.Range (6, 10));
 			break;
 		}
 	}
@@ -87,7 +87,7 @@ public class JobSpawner : MonoBehaviour {
 		
 	void SetJobObjectToQuadrant(){
 		//If there is already a job on the board, then make sure that this new job isn't in the same quadrant.
-		if (jobManager.GetJobObjectList ().Capacity > 0) {
+		if (jobManager.GetJobObjectList ().Count > 0) {
 			GameObject jobObject = jobManager.GetJobObjectList () [0];
 			JobObject jobScript = jobObject.GetComponent<JobObject>();
 			int avoidQuadrant = jobScript.boardQuadrant;

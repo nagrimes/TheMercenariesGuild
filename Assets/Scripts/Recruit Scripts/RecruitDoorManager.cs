@@ -8,6 +8,7 @@ public class RecruitDoorManager : MonoBehaviour {
 	[SerializeField] private Recruit currentRecruit;
 	[SerializeField] private float timeUntilNewRecruit;
 	[SerializeField] private RecruitManager recruitManager;
+	[SerializeField] private GameObject exclaimationMark;
 	static RecruitDoorManager recruitDoorObject;
 
 	void Start(){
@@ -28,6 +29,7 @@ public class RecruitDoorManager : MonoBehaviour {
 
 	public void UnloadRecruit(){
 		currentRecruit = null;
+		StartCoroutine (BeginRecruitLoadCycle ());
 	}
 
 	IEnumerator BeginRecruitLoadCycle(){
@@ -39,8 +41,18 @@ public class RecruitDoorManager : MonoBehaviour {
 		}
 		//Load a new random recruit into the ROM
 		//Debug.Log("Load recruit");
+		StartCoroutine(ShowExclamationMark());
 		Recruit[] recruits = recruitManager.GetAllRecruits();
-		int r = Random.Range (0, Mathf.Clamp(recruits.Length, 0, 10));
+		int r = Random.Range (0, 4);
 		LoadRecruit (recruits [r]);
+	}
+
+	IEnumerator	ShowExclamationMark(){
+		for (int i = 0; i < 3; i++) {
+			exclaimationMark.SetActive (true);
+			yield return new WaitForSeconds (1f);
+			exclaimationMark.SetActive (false);
+			yield return new WaitForSeconds (.5f);
+		}
 	}
 }

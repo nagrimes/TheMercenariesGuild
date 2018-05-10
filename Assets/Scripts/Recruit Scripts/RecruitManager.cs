@@ -74,7 +74,6 @@ public class RecruitManager : MonoBehaviour {
 	//Only for use by the default recruit loader at the beginning of the game.
 	void AddRecruit(Recruit recruit){
 		recruits.Add (recruit);
-		//Debug.Log ("Default recruit loaded.");
 	}
 
 	public void DeleteRecruit(){

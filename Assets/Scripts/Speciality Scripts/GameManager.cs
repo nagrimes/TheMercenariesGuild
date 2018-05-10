@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] private Text currencyText;
 	[SerializeField] private int startingGold = 6000;
 	[SerializeField] private RecruitManager recruitManager;
-	private int playerGold;
+	[SerializeField] private UpgradeManager upgradeManager;
+	private float playerGold;
 
 	void Awake(){
 		instance = this;

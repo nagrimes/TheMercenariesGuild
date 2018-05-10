@@ -12,6 +12,7 @@ public class SendMercenariesConfirmation : MonoBehaviour {
 	public void AcceptConfirmation(){
 		Debug.Log ("Confirmation: Request start job");
 		CloseConfirmationMenu ();
+		sendMercenariesManager.SendPartyValuesToActiveJobManager ();
 		sendMercenariesManager.CloseMenu ();
 		jobManager.DeleteJob ();
 		activeJobManager.StartJob (jobManager.GetCurrentJob ());

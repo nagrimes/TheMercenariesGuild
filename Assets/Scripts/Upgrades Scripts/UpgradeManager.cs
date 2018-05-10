@@ -19,9 +19,9 @@ public class UpgradeManager : MonoBehaviour{
 	public int startingUpgradeGoldCost;
 	public int startingUpgradeLevel = 1;
 
-	private int attackAndDefenseNum = 1;
-	private int goldNum = 1;
-	private int timeNum = 1;
+	[SerializeField] private int attackAndDefenseNum = 1;
+	[SerializeField] private int goldNum = 1;
+	[SerializeField] private int timeNum = 1;
 
 	[SerializeField] private int attackAndDefenseCost;
 	[SerializeField] private int goldCost;
@@ -78,5 +78,13 @@ public class UpgradeManager : MonoBehaviour{
 
 	public int GetAttackAndDefenseRank(){
 		return attackAndDefenseNum;
+	}
+
+	public int GetGoldRank(){
+		return goldNum;
+	}
+
+	public int GetTimeRank(){
+		return timeNum;
 	}
 }

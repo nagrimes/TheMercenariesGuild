@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable 649
 
 public class JobManager : MonoBehaviour {
 
@@ -43,7 +44,6 @@ public class JobManager : MonoBehaviour {
 	}
 
 	public void OpenJob(Job newJob, JobObject newJobObject){
-
 		jobCanvas.SetActive (true);
 
 		currentJobObject = newJobObject;
